@@ -11,7 +11,7 @@ tags:
 
 {{LearnSidebar}}{{PreviousMenuNext("Learn/Performance/measuring_performance", "Learn/Performance/video", "Learn/Performance")}}
 
-Media, namely images and video, account for over 70% of the bytes downloaded for the average website. In terms of download performance, eliminating media, and reducing file size is the low-hanging fruit. This article looks at optimizing image and video to improve web performance.
+Media, namely images and video, account for over 70% of the bytes downloaded for the average website. This means that eliminating media and reducing file size are simple, easy-to implement ways of improving download performance. This article looks at optimizing image and video to improve web performance.
 
 <table>
   <tbody>
@@ -44,13 +44,13 @@ Media, namely images and video, account for over 70% of the bytes downloaded for
 
 For the average website, [51% of its bandwidth comes from imagery, followed by video at 25%](https://discuss.httparchive.org/t/state-of-the-web-top-image-optimization-strategies/1367), so it's safe to say it's important to address and optimize your multimedia content.
 
-You need to be considerate of data usage. Many people are on capped data plans or even pay-as-you-go where they are literally paying by the megabyte. This isn't an emerging market problem either. As of 2018, [24% of the United Kingdom still use pay-as-you-go](https://www.ofcom.org.uk/__data/assets/pdf_file/0021/113169/Technology-Tracker-H1-2018-data-tables.pdf).
+You need to be considerate of data usage. Many people are on capped data or pay-as-you-go plans where they are literally paying by the megabyte. This isn't only an emerging market problem -- as of 2018, [24% of the United Kingdom still use pay-as-you-go](https://www.ofcom.org.uk/__data/assets/pdf_file/0021/113169/Technology-Tracker-H1-2018-data-tables.pdf).
 
-You also need to be considerate of memory as many mobile devices have limited RAM. It's important to remember that when images are downloaded, they need to be stored in memory.
+Many mobile devices have limited RAM, which means memory must also be considered. It's important to remember that when images are downloaded, they need to be stored in memory.
 
 ## Optimizing image delivery
 
-Despite being the largest consumer of bandwidth, the impact of image downloading on [perceived performance](/en-US/docs/Learn/Performance/Perceived_performance) is far lower than many expect (primarily because the page text content is downloaded immediately and users can see the images being rendered as they arrive). However, for a good user experience it's still important that a visitor can see them as soon as possible.
+Despite being the largest consumer of bandwidth, the impact of image downloading on [perceived performance](/en-US/docs/Learn/Performance/Perceived_performance) is far lower than many expect (primarily because the page text content is downloaded immediately and users can see the images being rendered as they arrive). However, delivering images to users as soon as possible is still an important factor of good user experience.
 
 ### Loading strategy
 
@@ -78,7 +78,7 @@ PNGs can be saved with three different output combinations:
 
 A good online tool for optimizing SVGs is [SVGOMG](https://jakearchibald.github.io/svgomg/). For PNGs there is [ImageOptim online](https://imageoptim.com/online) or [Squoosh](https://squoosh.app/).
 
-With photographic motifs that do not feature transparency there is a lot wider range of formats to chose from. If you want to play it safe, then you would go for well compressed **Progressive JPEGs**. Progressive JPEGs, in contrast to normal JPEGs, render progressively (hence the name), meaning the user sees a low-resolution version that gains clarity as the image downloads, rather than the image loading at full resolution top-to-bottom or even only rendering once completely downloaded. A good compressor for these would be MozJPEG, e.g. available to use in the online image optimization tool [Squoosh](https://squoosh.app/). A quality setting of 75% should yield decent results.
+With photographic motifs that do not feature transparency, there is a wider range of formats to chose from. If you want to play it safe, then you would go for well compressed **Progressive JPEGs**. These JPEGs render progressively (hence the name), meaning the user sees a low-resolution version that gains clarity as the image downloads, rather than the image loading at full resolution top-to-bottom or even only rendering once completely downloaded. MozJPEG is a good image compression tool which is available to use through the online image optimization tool [Squoosh](https://squoosh.app/). A quality setting of 75% should yield decent results.
 
 Other formats improve on JPEG's capabilities regarding compression, but are not available on every browser:
 
@@ -90,11 +90,11 @@ Other formats improve on JPEG's capabilities regarding compression, but are not 
 - **JPEG-XR** — created by Microsoft and was only available in Internet Explorer and EdgeHTML-based Edge. It didn't support progressive display, and the image decoding was not hardware accelerated and, therefore, resource-intensive on the browser's main thread. Progressive JPEG above the fold is rendered progressively (hence the name), meaning the user saw a low-resolution version that gained clarity as the image downloaded, rather than the image loading at full resolution top-to-bottom or even rendering once completely downloaded.
 - **JPEG2000** — once to be successor to JPEG but only supported in Safari. Doesn't support progressive display either.
 
-Given the narrow support for JPEG-XR and JPEG2000, and also taking decode costs into the equation, the only serious contender for JPEG is WebP. Which is why you could offer your images in that flavor too. This can be done via the `<picture>` element with the help of a `<source>` element equipped with a [type attribute](/en-US/docs/Web/HTML/Element/picture#the_type_attribute).
+Given the narrow support for JPEG-XR and JPEG2000, and taking decode costs into the equation, the only serious contender against the JPEG image format is WebP. Fortunately, you don't have to choose between the two file formats--you can offer both via the `<picture>` element with the help of a `<source>` element equipped with a [type attribute](/en-US/docs/Web/HTML/Element/picture#the_type_attribute).
 
-If all of this sounds a bit complicated or feels like too much work for your team then there is also online services that you can use as image CDNs that will automate the serving of the correct image format on-the-fly, according to the type of device or browser requesting the image. The biggest ones are [Cloudinary](https://cloudinary.com/blog/make_all_images_on_your_website_responsive_in_3_easy_steps) and [Image Engine](https://imageengine.io/).
+If you're looking for an automated solution, there are online services that you can use as image CDNs. These services automate the serving of the correct image format on the fly, according to the type of device or browser requesting the image. The most popular ones are [Cloudinary](https://cloudinary.com/blog/make_all_images_on_your_website_responsive_in_3_easy_steps) and [Image Engine](https://imageengine.io/).
 
-And finally, should you want to include animated images into your page, then know that Safari allows using video files within `<img>` and `<picture>` elements. These also allow you to add in an **Animated WebP** for all other modern browsers.
+Lastly, should you want to include animated images into your page, then know that Safari allows using video files within `<img>` and `<picture>` elements. These also allow you to add in an **Animated WebP** for all other modern browsers.
 
 ```html
 <picture>
@@ -106,24 +106,24 @@ And finally, should you want to include animated images into your page, then kno
 
 #### Serving the optimal size
 
-In image delivery the "one size fits all" approach will not yield the best results, meaning that for smaller screens you would want to serve images with smaller resolution and vice versa for larger screens. On top of that, you'd also want to serve higher resolution images to those devices that boast a high DPI screen (e.g. "Retina"). So apart from creating plenty of intermediate image variants you also need a way to serve the right file to the right browser. That's where you would need to upgrade your `<picture>` and `<source>` elements with [media](/en-US/docs/Web/HTML/Element/source#attr-media) and/or [sizes](/en-US/docs/Web/HTML/Element/source#attr-sizes) attributes. A detailed article on how to combine all of these attributes can be found [here](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
+In image delivery the "one size fits all" approach will not yield the best results. Rather, smaller screens should be served images with smaller resolution, and larger resolution images should be made available for larger screens. On top of that, you'd also want to serve higher resolution images to those devices that boast a high DPI screen (e.g. "Retina"). So apart from creating plenty of intermediate image variants you also need a way to serve the right file to the right browser. That's where you would need to upgrade your `<picture>` and `<source>` elements with [media](/en-US/docs/Web/HTML/Element/source#attr-media) and/or [sizes](/en-US/docs/Web/HTML/Element/source#attr-sizes) attributes. A detailed article on how to combine all of these attributes can be found [here](https://www.smashingmagazine.com/2014/05/responsive-images-done-right-guide-picture-srcset/).
 
 Two interesting effects to keep in mind regarding high dpi screens is that:
 
-- with a high DPI screen, humans will spot compression artifacts a lot later, meaning that for images meant for these screens you can crank up compression beyond usual.
-- [Only a very few people can spot an increase in resolution beyond 2× DPI](https://observablehq.com/@eeeps/visual-acuity-and-device-pixel-ratio), which means you don't need to serve images resolving higher than 2×.
+- Compression artifacts are a lot harder to spot on high DPI screens. This means images meant for these screens can have much higher compression than usual without affecting perceived quality.
+- [Very few people can spot an increase in resolution beyond 2× DPI](https://observablehq.com/@eeeps/visual-acuity-and-device-pixel-ratio), which means you don't need to serve images resolving higher than 2×.
 
 #### Controlling the priority (and ordering) of downloading images
 
-Getting the most important images in front of visitors sooner than the less important can deliver improved perceived performance.
+Prioritizing getting the most important images in front of visitors sooner than the less important can deliver improved perceived performance.
 
 The first thing to check is that your content images use `<img>` or `<picture>` elements and your background images are defined in CSS with `background-image` — images referenced in `<img>` elements are assigned a higher loading priority than background images.
 
-Secondly, with the adoption of Priority Hints, you can control the priority further by adding an `importance` attribute to your image tags. An example use case for priority hints on images are carousels where the first image is a higher priority than the subsequent images.
+Secondly, using Priority Hints allows you to control the priority further by adding an `importance` attribute to your image tags. An example use case for priority hints on images are carousels where the first image is a higher priority than the subsequent images.
 
 ### Rendering strategy: preventing jank when loading images
 
-As images are loaded asynchronously and continue to load after the first paint, if their dimensions aren't defined before load, they can cause reflows to the page content. For example, when text gets pushed down the page by images loading. For this reason, it's critical that you set `width` and `height` attributes so that the browser can reserve space for them in the layout.
+As images are loaded asynchronously and continue to load after the first paint, if their dimensions aren't defined before load, they can cause reflows to the page content. This can lead to, for example, text getting pushed down the page by images loading. For this reason, it's critical to set `width` and `height` attributes on your images or their containers so that the browser can reserve space for them in the layout.
 
 When the `width` and `height` attributes of an image are included on an HTML {{htmlelement("img")}} element, the aspect ratio of the image can be calculated by the browser prior to the image being loaded. This aspect ratio is used to reserve the space needed to display the image, reducing or even preventing a layout shift when the image is downloaded and painted to the screen. Reducing layout shift is a major component of good user experience and web performance.
 
@@ -150,7 +150,7 @@ The aspect ratio is then used to calculate the height and therefore the correct 
 
 The aspect ratio is used to reserve space only on the image load. Once the image has loaded, the intrinsic aspect ratio of the loaded image, rather than the aspect ratio from the attributes, is used. This ensures that it displays at the correct aspect ratio even if the attribute dimensions are not accurate.
 
-While developer best practices from the last decade may have recommended omitting the `width` and `height` attributes of an image on an HTML {{htmlelement("img")}}, due to aspect ratio mapping, including these two attributes is considered a developer best practice.
+While developer best practices from the last decade may have recommended omitting the `width` and `height` attributes of an image on an HTML {{htmlelement("img")}}, due to aspect ratio mapping, including these two attributes is now considered a developer best practice.
 
 For any background images, it's important you set a `background-color` value so any content overlaid is still readable before the image has downloaded.
 
